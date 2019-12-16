@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SpipAuteurs
  *
- * @ORM\Table(name="spip_auteurs", indexes={@ORM\Index(name="login", columns={"login"}), @ORM\Index(name="en_ligne", columns={"en_ligne"}), @ORM\Index(name="statut", columns={"statut"})})
+ * @ORM\Table(name="spip_auteurs", indexes={@ORM\Index(name="login", columns={"login"}), @ORM\Index(name="statut", columns={"statut"}), @ORM\Index(name="en_ligne", columns={"en_ligne"})})
  * @ORM\Entity
  */
 class SpipAuteurs

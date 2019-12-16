@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SpipForum
  *
- * @ORM\Table(name="spip_forum", indexes={@ORM\Index(name="id_thread", columns={"id_thread"}), @ORM\Index(name="optimal", columns={"statut", "id_parent", "id_objet", "objet", "date_heure"}), @ORM\Index(name="id_parent", columns={"id_parent"}), @ORM\Index(name="id_auteur", columns={"id_auteur"})})
+ * @ORM\Table(name="spip_forum", indexes={@ORM\Index(name="optimal", columns={"statut", "id_parent", "id_objet", "objet", "date_heure"}), @ORM\Index(name="id_thread", columns={"id_thread"}), @ORM\Index(name="id_parent", columns={"id_parent"}), @ORM\Index(name="id_auteur", columns={"id_auteur"})})
  * @ORM\Entity
  */
 class SpipForum

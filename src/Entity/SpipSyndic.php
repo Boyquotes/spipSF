@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SpipSyndic
  *
- * @ORM\Table(name="spip_syndic", indexes={@ORM\Index(name="id_rubrique", columns={"id_rubrique"}), @ORM\Index(name="statut", columns={"statut", "date_syndic"}), @ORM\Index(name="id_secteur", columns={"id_secteur"})})
+ * @ORM\Table(name="spip_syndic", indexes={@ORM\Index(name="id_rubrique", columns={"id_rubrique"}), @ORM\Index(name="id_secteur", columns={"id_secteur"}), @ORM\Index(name="statut", columns={"statut", "date_syndic"})})
  * @ORM\Entity
  */
 class SpipSyndic
