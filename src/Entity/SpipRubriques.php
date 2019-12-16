@@ -45,7 +45,7 @@ class SpipRubriques
     /**
      * @var string
      *
-     * @ORM\Column(name="texte", type="text", length=0, nullable=false)
+     * @ORM\Column(name="texte", type="text", nullable=false)
      */
     private $texte;
 

@@ -110,18 +110,38 @@ class RubriqueController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug(Slugger::slugify($post->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
 
-            return $this->redirectToRoute('admin_rubrique_edit', ['id' => $post->getId()]);
+            return $this->redirectToRoute('admin_rubrique_edit', ['id' => $post->getIdRubrique()]);
         }
 
         return $this->render('admin/rubrique/edit.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * Deletes a SpipRubriques entity.
+     *
+     * @Route("/{id}/delete", methods={"POST"}, name="admin_rubrique_delete")
+     * @IsGranted("delete", subject="post")
+     */
+    public function delete(Request $request, SpipRubriques $post): Response
+    {
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('admin_post_index');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($post);
+        $em->flush();
+
+        $this->addFlash('success', 'post.deleted_successfully');
+
+        return $this->redirectToRoute('admin_rubrique_index');
     }
 
 

@@ -17,13 +17,10 @@ class SpipRubriquesType extends AbstractType
             ->add('descriptif')
             ->add('texte')
             ->add('idSecteur')
-            ->add('maj')
             ->add('statut')
-            ->add('date')
             ->add('lang')
             ->add('langueChoisie')
             ->add('statutTmp')
-            ->add('dateTmp')
             ->add('profondeur')
         ;
     }
