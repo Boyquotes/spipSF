@@ -65,7 +65,7 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                             <span class="caret"></span>
-                                            <span class="sr-only">{{ app.user.fullname }}</span>
+                                            <span class="sr-only">{{ app.user.nom }}</span>
                                         </a>
                                         <ul class="dropdown-menu user" role="menu" aria-labelledby="user">
                                             <li>
@@ -75,7 +75,7 @@
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="{{ path('security_logout') }}">
+                                                <a href="{{ path('app_logout') }}">
                                                     <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
                                                 </a>
                                             </li>
