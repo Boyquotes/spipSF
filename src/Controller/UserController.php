@@ -69,7 +69,7 @@ class UserController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('security_logout');
+            return $this->redirectToRoute('app_logout');
         }
 
         return $this->render('user/change_password.html.twig', [

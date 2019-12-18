@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * SpipAuteurs
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="spip_auteurs", indexes={@ORM\Index(name="login", columns={"login"}), @ORM\Index(name="statut", columns={"statut"}), @ORM\Index(name="en_ligne", columns={"en_ligne"})})
  * @ORM\Entity
  */
-class SpipAuteurs
+class SpipAuteurs implements UserInterface
 {
     /**
      * @var int
@@ -174,6 +175,13 @@ class SpipAuteurs
      * @ORM\Column(name="messagerie", type="string", length=3, nullable=true)
      */
     private $messagerie;
+    
+    /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     public function getIdAuteur(): ?string
     {
@@ -444,5 +452,68 @@ class SpipAuteurs
         return $this;
     }
 
+    public function getPassword(): ?string
+    {
+        return $this->pass;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->pass= $password;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->login;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->login = $username;
+    }
+
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * {@inheritdoc}
+     */
+    public function getSalt(): ?string
+    {
+        // See "Do you need to use a Salt?" at https://symfony.com/doc/current/cookbook/security/entity_provider.html
+        // we're using bcrypt in security.yml to encode the password, so
+        // the salt value is built-in and you don't have to generate one
+        return $this->aleaActuel;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * {@inheritdoc}
+     */
+    public function eraseCredentials(): void
+    {
+        // if you had a plainPassword property, you'd nullify it here
+        // $this->plainPassword = null;
+    }
 
 }
