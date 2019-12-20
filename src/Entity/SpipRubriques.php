@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,6 +113,16 @@ class SpipRubriques
      * @ORM\Column(name="profondeur", type="smallint", nullable=false)
      */
     private $profondeur = '0';
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SpipArticles", mappedBy="id_rubrique")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getIdRubrique(): ?string
     {
@@ -269,6 +281,37 @@ class SpipRubriques
     public function setProfondeur(int $profondeur): self
     {
         $this->profondeur = $profondeur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SpipArticles[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(SpipArticles $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setRubrique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(SpipArticles $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            // set the owning side to null (unless already changed)
+            if ($article->getRubrique() === $this) {
+                $article->setRubrique(null);
+            }
+        }
 
         return $this;
     }

@@ -19,11 +19,11 @@
                 <td>{{ post.titre }}</td>
                 <td class="text-right">
                     <div class="item-actions">
-                        <a href="{{ path('admin_article_show', {id: post.idRubrique}) }}" class="btn btn-sm btn-default">
+                        <a href="{{ path('admin_article_show', {id: post.idArticle}) }}" class="btn btn-sm btn-default">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.show'|trans }}
                         </a>
 
-                        <a href="{{ path('admin_article_edit', {id: post.idRubrique}) }}" class="btn btn-sm btn-primary">
+                        <a href="{{ path('admin_article_edit', {id: post.idArticle}) }}" class="btn btn-sm btn-primary">
                             <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit'|trans }}
                         </a>
                     </div>

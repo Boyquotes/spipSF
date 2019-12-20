@@ -42,9 +42,9 @@ class ArticlesController extends AbstractController
 	dump($spipArticles);
 	foreach($spipArticles as $spipArticle){
 			dump($spipArticle->getRubrique());
-		if($spipArticle->getRubrique()->getIdRubrique() != 0 && $spipArticle->getRubrique()->getIdRubrique() != 3){
-			dump($spipArticle->getRubrique()->getTitre());
-		}
+//		if($spipArticle->getRubrique() != 0){
+//			dump($spipArticle->getRubrique()->getTitre());
+//		}
 	}
         return $this->render('admin/article/index_spip_articles.html.twig', ['posts' => $spipArticles]);
     }

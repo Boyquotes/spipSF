@@ -41,13 +41,11 @@ class SpipArticles
      * @ORM\Column(name="soustitre", type="text", length=65535, nullable=false)
      */
     private $soustitre;
-
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_rubrique", type="bigint", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\SpipRubriques", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false, name="id_rubrique", referencedColumnName="id_rubrique")
      */
-    private $idRubrique = '0';
+    private $idRubrique;
 
     /**
      * @var string
@@ -196,6 +194,8 @@ class SpipArticles
      */
     private $virtuel;
 
+//    private $rubrique;
+
     public function getIdArticle(): ?string
     {
         return $this->idArticle;
@@ -236,7 +236,7 @@ class SpipArticles
 
         return $this;
     }
-
+/*
     public function getIdRubrique(): ?string
     {
         return $this->idRubrique;
@@ -248,7 +248,7 @@ class SpipArticles
 
         return $this;
     }
-
+*/
     public function getDescriptif(): ?string
     {
         return $this->descriptif;
@@ -497,6 +497,18 @@ class SpipArticles
     public function setVirtuel(string $virtuel): self
     {
         $this->virtuel = $virtuel;
+
+        return $this;
+    }
+
+    public function getRubrique(): ?SpipRubriques
+    {
+        return $this->idRubrique;
+    }
+
+    public function setRubrique(?SpipRubriques $rubrique): self
+    {
+        $this->idRubrique = $rubrique;
 
         return $this;
     }
