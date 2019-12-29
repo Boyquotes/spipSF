@@ -115,7 +115,7 @@ class SpipRubriques
     private $profondeur = '0';
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SpipArticles", mappedBy="id_rubrique")
+     * @ORM\OneToMany(targetEntity="App\Entity\SpipArticles", mappedBy="SpipRubrique")
      */
     private $articles;
 

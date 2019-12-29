@@ -39,7 +39,7 @@ class ArticlesController extends AbstractController
     {
 //        $authorSpipArticles = $posts->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
         $spipArticles = $spipArticles->findAll();
-	dump($spipArticles);
+//	dump($spipArticles);
 	foreach($spipArticles as $spipArticle){
 			dump($spipArticle->getRubrique());
 		if($spipArticle->getRubrique()->getIdRubrique() != 0 && $spipArticle->getRubrique()->getIdRubrique() != 3){

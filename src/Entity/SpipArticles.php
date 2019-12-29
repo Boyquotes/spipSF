@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SpipArticles
  *
- * @ORM\Table(name="spip_articles", indexes={@ORM\Index(name="lang", columns={"lang"}), @ORM\Index(name="id_trad", columns={"id_trad"}), @ORM\Index(name="id_secteur", columns={"id_secteur"}), @ORM\Index(name="id_rubrique", columns={"id_rubrique"}), @ORM\Index(name="statut", columns={"statut", "date"})})
+ * @ORM\Table(name="spip_articles", indexes={@ORM\Index(name="lang", columns={"lang"}), @ORM\Index(name="id_trad", columns={"id_trad"}), @ORM\Index(name="id_secteur", columns={"id_secteur"}), @ORM\Index(name="id_article", columns={"id_article"}), @ORM\Index(name="statut", columns={"statut", "date"})})
  * @ORM\Entity
  */
 class SpipArticles
@@ -45,7 +45,7 @@ class SpipArticles
      * @ORM\ManyToOne(targetEntity="App\Entity\SpipRubriques", inversedBy="articles")
      * @ORM\JoinColumn(nullable=false, name="id_rubrique", referencedColumnName="id_rubrique")
      */
-    private $idRubrique;
+    private $SpipRubrique;
 
     /**
      * @var string
@@ -503,12 +503,12 @@ class SpipArticles
 
     public function getRubrique(): ?SpipRubriques
     {
-        return $this->idRubrique;
+        return $this->SpipRubrique;
     }
 
     public function setRubrique(?SpipRubriques $rubrique): self
     {
-        $this->idRubrique = $rubrique;
+        $this->SpipRubrique = $rubrique;
 
         return $this;
     }

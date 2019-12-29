@@ -40,6 +40,12 @@ class RubriqueController extends AbstractController
 //        $authorSpipRubriques = $posts->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
         $spipRubriques = $spipRubriques->findAll();
 	dump($spipRubriques);
+	foreach($spipRubriques as $spipRubrique){
+		dump($spipRubrique->getArticles());
+            foreach($spipRubrique->getArticles() as $article){
+	        dump($article->getTitre());
+	    }
+	}
         return $this->render('admin/rubrique/index_spip_rubriques.html.twig', ['posts' => $spipRubriques]);
     }
 
