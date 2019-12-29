@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * SpipArticles
  *
+ * @ApiResource(
+ * collectionOperations={"get"},
+ * itemOperations={"get"}
+ * )
  * @ORM\Table(name="spip_articles", indexes={@ORM\Index(name="lang", columns={"lang"}), @ORM\Index(name="id_trad", columns={"id_trad"}), @ORM\Index(name="id_secteur", columns={"id_secteur"}), @ORM\Index(name="id_article", columns={"id_article"}), @ORM\Index(name="statut", columns={"statut", "date"})})
  * @ORM\Entity
  */

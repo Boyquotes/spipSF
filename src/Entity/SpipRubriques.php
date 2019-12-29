@@ -2,15 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * SpipRubriques
- *
  * @ORM\Table(name="spip_rubriques", indexes={@ORM\Index(name="id_parent", columns={"id_parent"}), @ORM\Index(name="lang", columns={"lang"})})
  * @ORM\Entity
+ * @ApiResource(
+ * collectionOperations={"get"},
+ * itemOperations={"get"} *
+ * )
  */
 class SpipRubriques
 {
