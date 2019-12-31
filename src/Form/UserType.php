@@ -44,14 +44,12 @@ class UserType extends AbstractType
                 'label' => 'label.username',
                 'disabled' => true,
             ])
-            ->add('fullName', TextType::class, [
-                'label' => 'label.fullname',
-            ])
             ->add('email', EmailType::class, [
                 'label' => 'label.email',
             ])
         ;
     }
+
 
     /**
      * {@inheritdoc}
@@ -59,7 +57,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => 'App\Entity\SpipAuteurs',
         ]);
     }
 }

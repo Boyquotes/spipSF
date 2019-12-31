@@ -36,19 +36,11 @@ class SpipArticlesRepository extends ServiceEntityRepository
 
     public function findLatest(int $page = 1, Tag $tag = null): Paginator
     {
-        $qb = $this->createQueryBuilder('p')
-            ->addSelect('a', 't')
-            ->innerJoin('p.author', 'a')
-            ->leftJoin('p.tags', 't')
-            ->where('p.publishedAt <= :now')
-            ->orderBy('p.publishedAt', 'DESC')
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.date <= :now')
+            ->orderBy('a.date', 'DESC')
             ->setParameter('now', new \DateTime())
         ;
-
-        if (null !== $tag) {
-            $qb->andWhere(':tag MEMBER OF p.tags')
-                ->setParameter('tag', $tag);
-        }
 
         return (new Paginator($qb))->paginate($page);
     }
@@ -56,7 +48,7 @@ class SpipArticlesRepository extends ServiceEntityRepository
     /**
      * @return SpipArticles[]
      */
-    public function findBySearchQuery(string $query, int $limit = SpipArticles::NUM_ITEMS): array
+    public function findBySearchQuery(string $query, int $limit = 10): array
     {
         $searchTerms = $this->extractSearchTerms($query);
 
@@ -68,13 +60,13 @@ class SpipArticlesRepository extends ServiceEntityRepository
 
         foreach ($searchTerms as $key => $term) {
             $queryBuilder
-                ->orWhere('p.title LIKE :t_'.$key)
+                ->orWhere('p.titre LIKE :t_'.$key)
                 ->setParameter('t_'.$key, '%'.$term.'%')
             ;
         }
 
         return $queryBuilder
-            ->orderBy('p.publishedAt', 'DESC')
+            ->orderBy('p.date', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();

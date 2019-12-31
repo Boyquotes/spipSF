@@ -26,8 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/admin/article")
  * @IsGranted("ROLE_ADMIN")
  *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Boyquotes <nicolas@montpellibre.fr>
  */
 class ArticlesController extends AbstractController
 {
@@ -120,7 +119,7 @@ class ArticlesController extends AbstractController
 
             $this->addFlash('success', 'post.updated_successfully');
 
-            return $this->redirectToRoute('admin_article_edit', ['id' => $post->getIdArticles()]);
+            return $this->redirectToRoute('admin_article_edit', ['id' => $post->getIdArticle()]);
         }
 
         return $this->render('admin/article/edit.html.twig', [
@@ -142,8 +141,8 @@ class ArticlesController extends AbstractController
         }
 
         $em = $this->getDoctrine()->getManager();
-        $em->remove($post);
-        $em->flush();
+        //$em->remove($post);
+        //$em->flush();
 
         $this->addFlash('success', 'post.deleted_successfully');
 

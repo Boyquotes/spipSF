@@ -6,6 +6,7 @@ use App\Entity\SpipRubriques;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class SpipRubriquesType extends AbstractType
 {
@@ -19,9 +20,11 @@ class SpipRubriquesType extends AbstractType
             ->add('idSecteur')
             ->add('statut')
             ->add('lang')
-            ->add('langueChoisie')
             ->add('statutTmp')
             ->add('profondeur')
+            ->add('maj', DateType::class)
+            ->add('date', DateType::class)
+            ->add('dateTmp', DateType::class)
         ;
     }
 

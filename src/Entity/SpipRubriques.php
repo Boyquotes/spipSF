@@ -1,7 +1,8 @@
 <?php
-
 namespace App\Entity;
-
+/*
+ * Boyquotes <nicolas@montpellibre.fr>
+*/
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -67,7 +68,7 @@ class SpipRubriques
      *
      * @ORM\Column(name="maj", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $maj = 'CURRENT_TIMESTAMP';
+    private $maj;
 
     /**
      * @var string
@@ -125,6 +126,7 @@ class SpipRubriques
 
     public function __construct()
     {
+	$this->maj = new \DateTime();
         $this->articles = new ArrayCollection();
     }
 
@@ -193,12 +195,17 @@ class SpipRubriques
         return $this;
     }
 
-    public function getMaj(): ?\DateTimeInterface
+//    public function getMaj(): ?\DateTimeInterface
+    public function getMaj(): \DateTime
     {
+//        return \DateTimeInterface::createFromFormat('Y-m-d', $this->maj);
+//        return \DateTime $this->maj;
+        dump($this->maj);
         return $this->maj;
+//        return \DateTime::createFromFormat("Y-m-d", $this->maj);
     }
 
-    public function setMaj(\DateTimeInterface $maj): self
+    public function setMaj(\DateTime $maj): self
     {
         $this->maj = $maj;
 

@@ -12,7 +12,6 @@ class SpipArticlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idParent')
             ->add('titre')
             ->add('descriptif')
             ->add('texte')
@@ -20,8 +19,6 @@ class SpipArticlesType extends AbstractType
             ->add('statut')
             ->add('lang')
             ->add('langueChoisie')
-            ->add('statutTmp')
-            ->add('profondeur')
         ;
     }
 

@@ -15,6 +15,7 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use App\Events\CommentCreatedEvent;
 use App\Form\CommentType;
+use App\Repository\SpipArticlesRepository;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -142,12 +143,12 @@ class BlogController extends AbstractController
     /**
      * @Route("/search", methods={"GET"}, name="blog_search")
      */
-    public function search(Request $request, PostRepository $posts): Response
+    public function search(Request $request, SpipArticlesRepository $posts): Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->render('blog/search.html.twig');
         }
-
+//dump('ici');
         $query = $request->query->get('q', '');
         $limit = $request->query->get('l', 10);
         $foundPosts = $posts->findBySearchQuery($query, $limit);
@@ -155,14 +156,11 @@ class BlogController extends AbstractController
         $results = [];
         foreach ($foundPosts as $post) {
             $results[] = [
-                'title' => htmlspecialchars($post->getTitle(), ENT_COMPAT | ENT_HTML5),
-                'date' => $post->getPublishedAt()->format('M d, Y'),
-                'author' => htmlspecialchars($post->getAuthor()->getFullName(), ENT_COMPAT | ENT_HTML5),
-                'summary' => htmlspecialchars($post->getSummary(), ENT_COMPAT | ENT_HTML5),
-                'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
+                'titre' => htmlspecialchars($post->getTitre(), ENT_COMPAT | ENT_HTML5),
+                'texte' => htmlspecialchars($post->getTexte(), ENT_COMPAT | ENT_HTML5),
             ];
         }
-
+//dump($results);
         return $this->json($results);
     }
 }

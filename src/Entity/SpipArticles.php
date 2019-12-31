@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+/*
+ * Boyquotes <nicolas@montpellibre.fr>
+*/
+
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 
@@ -69,7 +73,7 @@ class SpipArticles
     /**
      * @var string
      *
-     * @ORM\Column(name="texte", type="text", length=0, nullable=false)
+     * @ORM\Column(name="texte", type="text", nullable=false)
      */
     private $texte;
 
@@ -106,7 +110,7 @@ class SpipArticles
      *
      * @ORM\Column(name="maj", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $maj = 'CURRENT_TIMESTAMP';
+    private $maj;
 
     /**
      * @var string|null

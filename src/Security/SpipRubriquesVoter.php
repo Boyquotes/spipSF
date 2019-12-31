@@ -11,6 +11,7 @@
 
 namespace App\Security;
 
+use App\Entity\SpipAuteurs;
 use App\Entity\SpipRubriques;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -49,7 +50,7 @@ class SpipRubriquesVoter extends Voter
         $user = $token->getUser();
 
         // the user must be logged in; if not, deny permission
-        if (!$user instanceof User) {
+        if (!$user instanceof SpipAuteurs) {
             return false;
         }
 

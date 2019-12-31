@@ -26,19 +26,20 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/admin/rubrique")
  * @IsGranted("ROLE_ADMIN")
  *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Boyquotes <nicolas@montpellibre.fr>
  */
 class RubriqueController extends AbstractController
 {
     /**
      * Lists all SpipRubriques entities.
+     * @Route("/", methods={"GET"}, name="admin_index")
      * @Route("/", methods={"GET"}, name="admin_rubrique_index")
      */
     public function indexSpipRubriques(SpipRubriquesRepository $spipRubriques): Response
     {
 //        $authorSpipRubriques = $posts->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
         $spipRubriques = $spipRubriques->findAll();
+	dump($this->getUser());
 	dump($spipRubriques);
 	foreach($spipRubriques as $spipRubrique){
 		dump($spipRubrique->getArticles());
@@ -142,8 +143,8 @@ class RubriqueController extends AbstractController
         }
 
         $em = $this->getDoctrine()->getManager();
-        $em->remove($post);
-        $em->flush();
+        //$em->remove($post);
+        //$em->flush();
 
         $this->addFlash('success', 'post.deleted_successfully');
 
