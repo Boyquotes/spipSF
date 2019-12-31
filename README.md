@@ -1,60 +1,22 @@
-Symfony Demo Application
+Spip Symfony Demo
 ========================
 
-The "Symfony Demo Application" is a reference application created to show how
-to develop applications following the [Symfony Best Practices][1].
+Ce code permet d'acceder à vos articles et rubriques d'une BDD Spip à la fois côté front et back avec le framework Symfony.
+L'authentificator a été modifié afin de gérer l'authentification avec les identifiants existants déjà dans votre table spip_auteurs(il faut ajouté une colonne roles à cette table).
 
 Requirements
 ------------
 
-  * PHP 7.1.3 or higher;
-  * PDO-SQLite PHP extension enabled;
+  * PHP 7.1.3 or higher; 
+  * une BDD de SPIP en version 3.x
   * and the [usual Symfony application requirements][2].
 
 Installation
 ------------
 
-[Download Symfony][4] to install the `symfony` binary on your computer and run
-this command:
+Télécharger ce code.
+Créer un fichier .env.local en copiant le .env à la racine de ce depot et adapter la ligne mysql en renseignement les informations pour se connecter à la base Spip que vous souhaitez parcourir.
+$DATABASE_URL=mysql://VOTRE_LOGIN:VOTRE_PASSWORD@127.0.0.1:3306/NOM_DE_LA_BDD
 
-```bash
-$ symfony new --demo my_project
-```
+Vos rubriques et articles doivent s'afficher tant sur le front que dans l'admin.
 
-Alternatively, you can use Composer:
-
-```bash
-$ composer create-project symfony/symfony-demo my_project
-```
-
-Usage
------
-
-There's no need to configure anything to run the application. If you have
-[installed Symfony][4], run this command and access the application in your
-browser at the given URL (<https://localhost:8000> by default):
-
-```bash
-$ cd my_project/
-$ symfony serve
-```
-
-If you don't have the Symfony binary installed, run `php -S localhost:8000 -t public/`
-to use the built-in PHP web server or [configure a web server][3] like Nginx or
-Apache to run the application.
-
-Tests
------
-
-Execute this command to run tests:
-
-```bash
-$ cd my_project/
-$ ./bin/phpunit
-```
-
-[1]: https://symfony.com/doc/current/best_practices.html
-[2]: https://symfony.com/doc/current/reference/requirements.html
-[3]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
-[4]: https://symfony.com/download
-[5]: https://github.com/symfony/webpack-encore
